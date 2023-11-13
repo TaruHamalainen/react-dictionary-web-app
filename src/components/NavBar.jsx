@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function NavBar({ userSettings, onThemeChange, onFontChange }) {
+export default function NavBar({
+  userSettings,
+  onThemeChange,
+  onFontChange,
+  reference,
+}) {
   const fonts = ["Sans Serif", "Serif", "Mono"];
   const { font, theme } = userSettings;
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!reference.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
   return (
     <header>
       <nav className="navbar">
@@ -11,6 +29,7 @@ export default function NavBar({ userSettings, onThemeChange, onFontChange }) {
         <div className="user-settings">
           {/* FONT SELECTION */}
           <div
+            ref={reference}
             onClick={() => setIsOpen((prev) => !prev)}
             className="user-settings-font"
           >

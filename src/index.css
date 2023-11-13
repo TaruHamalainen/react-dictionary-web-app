@@ -97,6 +97,7 @@ html {
   gap: 1rem;
   align-items: center;
   position: relative;
+  cursor: pointer;
 }
 
 .user-setting-font-pop-up {

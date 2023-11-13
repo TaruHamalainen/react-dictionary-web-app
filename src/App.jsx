@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import NavBar from "./components/NavBar";
 
 export default function App() {
@@ -6,6 +6,8 @@ export default function App() {
     font: "Sans Serif",
     theme: "light",
   });
+
+  let popUpRef = useRef(null);
 
   const handleThemeChange = () => {
     setUserSettings({
@@ -28,6 +30,7 @@ export default function App() {
           userSettings={userSettings}
           onThemeChange={handleThemeChange}
           onFontChange={handleFontChange}
+          reference={popUpRef}
         />
       </div>
     </div>
