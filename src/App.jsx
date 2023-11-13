@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import NavBar from "./components/NavBar";
+import Word from "./components/Word";
+import SearchBar from "./components/SearchBar";
 
 export default function App() {
   // Usersettings to change font and color theme
@@ -12,6 +14,21 @@ export default function App() {
           theme: "light",
         };
   });
+
+  const [wordData, setWordData] = useState("");
+  const [query, setQuery] = useState("cat");
+
+  const fetchWordData = async () => {
+    const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${query}`;
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data[0]);
+    setWordData(data[0]);
+  };
+
+  useEffect(() => {
+    fetchWordData();
+  }, []);
 
   // saving user settings to local storage
   useEffect(() => {
@@ -29,9 +46,17 @@ export default function App() {
     });
   };
 
+  // Changing font
   const handleFontChange = (value) => {
     setUserSettings({ ...userSettings, font: value });
   };
+
+  const handleQueryChange = (value) => {
+    setQuery(value);
+  };
+
+  if (!wordData) return null;
+
   return (
     <div
       className="app"
@@ -45,6 +70,14 @@ export default function App() {
           onFontChange={handleFontChange}
           reference={popUpRef}
         />
+
+        <SearchBar
+          onFetchData={fetchWordData}
+          onQueryChange={handleQueryChange}
+          query={query}
+        />
+
+        <Word wordData={wordData} />
       </div>
     </div>
   );

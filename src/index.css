@@ -79,6 +79,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 2rem 0;
 }
 
 .logo {
@@ -169,4 +170,33 @@ html {
 .user-settings-theme-input:checked + .user-settings-theme-label::after {
   left: calc(100% - 3px);
   transform: translateX(-100%);
+}
+
+/* SEARCH BAR*/
+
+.search-bar {
+  position: relative;
+}
+
+.search-bar-input {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 2rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: var(--search-bar-bg);
+}
+
+.search-bar-input:focus {
+  outline: none;
+}
+
+.search-btn {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
