@@ -14,6 +14,8 @@ export default function Word({ wordData, allWords, index }) {
       ).audio
     );
   }, [wordData]);
+
+  if (!allWords) return null;
   return (
     <div className="word-container">
       <section className="word-header">
@@ -46,7 +48,10 @@ export default function Word({ wordData, allWords, index }) {
         <p className="text-m section-heading source-heading">Source</p>
         <div className="source-link-container">
           <a href={wordData.sourceUrls[0]}>{wordData.sourceUrls[0]}</a>
-          <button className="new-window-btn">
+          <button
+            onClick={() => window.open(wordData.sourceUrls[0], "_blank")}
+            className="new-window-btn"
+          >
             <img src="icon-new-window.svg" alt="new window icon" />
           </button>
         </div>
