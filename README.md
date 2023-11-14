@@ -25,7 +25,7 @@ Bonus: Have the correct color scheme chosen for them based on their computer pre
 - change theme between dark and light. Selected theme is saved to localstorage
 - change font between 3 options. Selected font is saved to localstorage
 
-#Screenshots
+##Screenshots
 
 ![dictionary-web-app-dark-mode](https://github.com/TaruHamalainen/react-dictionary-web-app/assets/82812247/805d01a4-67eb-4e15-ba62-cfa06fc75b65)
 ![dictionary-web-app-light-mode](https://github.com/TaruHamalainen/react-dictionary-web-app/assets/82812247/8d6618cf-2067-4cab-8111-239873933b0c)
