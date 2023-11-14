@@ -22,7 +22,7 @@ export default function App() {
     const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${query}`;
     const response = await fetch(URL);
     const data = await response.json();
-    setWordData(data[0]);
+    setWordData(data);
   };
 
   useEffect(() => {
@@ -76,7 +76,9 @@ export default function App() {
           query={query}
         />
 
-        <Word wordData={wordData} />
+        {wordData.map((data, index) => (
+          <Word key={index} wordData={data} allWords={wordData} index={index} />
+        ))}
       </div>
     </div>
   );

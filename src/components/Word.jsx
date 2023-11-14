@@ -1,12 +1,30 @@
-export default function Word({ wordData }) {
+import { useEffect, useRef } from "react";
+
+export default function Word({ wordData, allWords, index }) {
   const meanings = wordData.meanings.map((meaning, index) => (
     <Meaning key={index} meaning={meaning} />
   ));
+
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(
+      wordData.phonetics?.find(
+        (phonetics) => phonetics.text && phonetics.audio
+      ).audio
+    );
+  }, [wordData]);
   return (
     <div className="word-container">
       <section className="word-header">
         <div className="word-heading-left">
-          <h1 className="heading-l">{wordData.word}</h1>
+          <h1 className="heading-l">
+            {wordData.word}{" "}
+            <span className="index text-s">
+              ({index + 1} / {allWords.length})
+            </span>
+          </h1>
+
           {wordData.phonetic && (
             <p className="heading-m phonetic">{wordData.phonetic}</p>
           )}
@@ -15,7 +33,7 @@ export default function Word({ wordData }) {
         {wordData.phonetics?.find(
           (phonetics) => phonetics.text && phonetics.audio
         ) && (
-          <button className="play-btn">
+          <button onClick={() => audioRef.current.play()} className="play-btn">
             <img src="icon-play.svg" alt="play icon" />
           </button>
         )}
@@ -33,6 +51,8 @@ export default function Word({ wordData }) {
           </button>
         </div>
       </div>
+
+      <div className="full-line"></div>
     </div>
   );
 }
