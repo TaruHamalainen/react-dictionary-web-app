@@ -4,17 +4,35 @@ export default function Word({ wordData }) {
   ));
   return (
     <div className="word-container">
-      <header>
-        <div>
-          <h1>{wordData.word}</h1>
-          {wordData.phonetic && <p>{wordData.phonetic}</p>}
+      <section className="word-header">
+        <div className="word-heading-left">
+          <h1 className="heading-l">{wordData.word}</h1>
+          {wordData.phonetic && (
+            <p className="heading-m phonetic">{wordData.phonetic}</p>
+          )}
         </div>
-        <button>
-          <img src="icon-play.svg" alt="play icon" />
-        </button>
-      </header>
+
+        {wordData.phonetics?.find(
+          (phonetics) => phonetics.text && phonetics.audio
+        ) && (
+          <button className="play-btn">
+            <img src="icon-play.svg" alt="play icon" />
+          </button>
+        )}
+      </section>
 
       {meanings}
+
+      <div className="source-section">
+        <div className="full-line"></div>
+        <p className="text-m section-heading source-heading">Source</p>
+        <div className="source-link-container">
+          <a href={wordData.sourceUrls[0]}>{wordData.sourceUrls[0]}</a>
+          <button className="new-window-btn">
+            <img src="icon-new-window.svg" alt="new window icon" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -22,38 +40,44 @@ export default function Word({ wordData }) {
 const Meaning = ({ meaning }) => {
   return (
     <section>
-      <div>
-        <p>{meaning.partOfSpeech}</p>
-        <hr />
+      <div className="part-of-Speech">
+        <p className="heading-m italic">{meaning.partOfSpeech}</p>
+        <div className="line"></div>
       </div>
 
-      <p>Meaning</p>
-      <ul>
+      <p className="text-m section-heading">Meaning</p>
+      <ul className="meanings-list">
         {meaning.definitions.map((definition, index) => (
           <li key={index}>
-            <p>{definition.definition}</p>
-            {definition.example && <p>{definition.example}</p>}
+            <p className="definition text-m">{definition.definition}</p>
+            {definition.example && (
+              <p className="text-m italic example">"{definition.example}"</p>
+            )}
           </li>
         ))}
       </ul>
 
       {meaning.synonyms.length > 0 && (
-        <div>
-          <p>Synonyms</p>
-          <ul>
+        <div className="synonyms-container">
+          <p className="text-m section-heading">Synonyms</p>
+          <ul className="synonyms-list">
             {meaning.synonyms.map((synonym, index) => (
-              <li key={index}>{synonym}</li>
+              <li className="text-m" key={index}>
+                {synonym}
+              </li>
             ))}
           </ul>
         </div>
       )}
 
       {meaning.antonyms.length > 0 && (
-        <div>
-          <p>antonyms</p>
-          <ul>
+        <div className="synonyms-container">
+          <p className="text-m section-heading">antonyms</p>
+          <ul className="synonyms-list">
             {meaning.antonyms.map((antonym, index) => (
-              <li key={index}>{antonym}</li>
+              <li className="text-m" key={index}>
+                {antonym}
+              </li>
             ))}
           </ul>
         </div>

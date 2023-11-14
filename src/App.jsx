@@ -22,7 +22,6 @@ export default function App() {
     const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${query}`;
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(data[0]);
     setWordData(data[0]);
   };
 

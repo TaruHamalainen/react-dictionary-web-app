@@ -21,7 +21,7 @@ export default function NavBar({
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, []);
+  });
   return (
     <nav className="navbar">
       <img className="logo" src="logo.svg" alt="logo" />
