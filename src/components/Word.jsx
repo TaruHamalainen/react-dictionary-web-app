@@ -21,7 +21,7 @@ export default function Word({ wordData, allWords, index }) {
           <h1 className="heading-l">
             {wordData.word}{" "}
             <span className="index text-s">
-              ({index + 1} / {allWords.length})
+              ({index + 1} out of {allWords.length})
             </span>
           </h1>
 

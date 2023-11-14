@@ -331,3 +331,45 @@ h1 {
   display: block;
   margin: 2rem 0;
 }
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 68.9rem;
+    width: 68.9rem;
+  }
+
+  .line {
+    width: 90%;
+  }
+
+  .heading-l {
+    font-size: 6.4rem;
+  }
+
+  .heading-m {
+    font-size: 2.4rem;
+  }
+
+  .text-m {
+    font-size: 1.8rem;
+  }
+
+  .text-s {
+    font-size: 1.8rem;
+  }
+
+  .search-bar-input {
+    padding: 2rem;
+  }
+  .user-setting-font-pop-up {
+    width: 18rem;
+    height: 15rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    max-width: 73.6rem;
+    width: 73.6rem;
+  }
+}

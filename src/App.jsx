@@ -3,8 +3,14 @@ import NavBar from "./components/NavBar";
 import Word from "./components/Word";
 import SearchBar from "./components/SearchBar";
 
+// TODOS:
+// - check styles in dark mode
+// - Error page when word is not found
+// - Hover and active states
+
 export default function App() {
-  // Usersettings to change font and color theme
+  // Usersettings to change font and color theme. If localstorage has settings saved
+  // Get settings from localstorage. else use default settings
   const [userSettings, setUserSettings] = useState(() => {
     const savedUserSettings = localStorage.getItem("userSettings");
     return savedUserSettings
@@ -15,9 +21,13 @@ export default function App() {
         };
   });
 
-  const [wordData, setWordData] = useState("");
-  const [query, setQuery] = useState("cat");
+  // array of word objects, fetching from dictionary API
+  const [wordData, setWordData] = useState(null);
 
+  // Users input, used as parameter in API to fetch word objects
+  const [query, setQuery] = useState("keyboard");
+
+  // Fetching data from API
   const fetchWordData = async () => {
     const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${query}`;
     const response = await fetch(URL);
@@ -25,11 +35,13 @@ export default function App() {
     setWordData(data);
   };
 
+  // On first load, fetching data for word 'keyboard'
+  // to show on page
   useEffect(() => {
     fetchWordData();
   }, []);
 
-  // saving user settings to local storage
+  // saving user settings to local storage when usersettings is changed
   useEffect(() => {
     localStorage.setItem("userSettings", JSON.stringify(userSettings));
   }, [userSettings]);
@@ -50,6 +62,7 @@ export default function App() {
     setUserSettings({ ...userSettings, font: value });
   };
 
+  // Changing query pased on user input
   const handleQueryChange = (value) => {
     setQuery(value);
   };

@@ -10,6 +10,7 @@ export default function NavBar({
   const { font, theme } = userSettings;
   const [isOpen, setIsOpen] = useState(false);
 
+  // Handle closing pop up when clicking outside
   useEffect(() => {
     let handler = (e) => {
       if (!reference.current.contains(e.target)) {
