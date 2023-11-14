@@ -10,7 +10,6 @@ export default function SearchBar({ onFetchData }) {
       setError(true);
       return;
     }
-    // onQueryChange(input);
 
     setError(false);
 
